@@ -1,0 +1,397 @@
+<!-- ******************************************************************************************************************************************* -->
+<div class="row" style="display: none">
+    <!--Sección de paseadores-->
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">Gestión de Paseadores</h2>
+
+          <form
+            class="text-primary"
+            id="formPas"
+            onsubmit="consultarPaseadores(); return false"
+          >
+            <input
+              type="text"
+              id="iid"
+              name="iid"
+              placeholder="Object _id"
+            />
+            <br />
+            <label for="nombre">Nombres y Apellidos</label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              placeholder="Nombre paseador"
+            />
+            <br />
+            <label for="tipide">Tipo de Identificación</label>
+            <select id="tipide" name="tipide">
+              <option value="" disabled selected>Seleccione</option>
+              <option value="CC">Cédula de Ciudadanía</option>
+              <option value="TI">Tarjeta de Identidad</option>
+              <option value="CE">Cédula de Extranjería</option>
+              <option value="Otro">Otro</option>
+            </select>
+            <br />
+            <label for="numide">Número de Identificación</label>
+            <input
+              type="text"
+              id="numide"
+              name="numide"
+              placeholder="Número de identificación"
+            />
+            <br />
+            <label for="numcelpas">Número de Celular</label>
+            <input
+              type="text"
+              id="numcelpas"
+              name="numcelpas"
+              placeholder="Número de celular del paseador"
+            />
+            <br />
+            <label for="email">Correo Electrónico</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Correo electrónico"
+            />
+            <br />
+            <label for="numcelemp">Número de Celular de la Empresa</label>
+            <input
+              type="text"
+              id="numcelemp"
+              name="numcelemp"
+              placeholder="Número de celular de la empresa"
+            />
+            <br />
+            <label for="diremp">Dirección de la Empresa</label>
+            <input
+              type="text"
+              id="diremp"
+              name="diremp"
+              placeholder="Dirección de la empresa"
+            />
+            <br />
+            <label for="dirpas">Dirección del Paseador</label>
+            <input
+              type="text"
+              id="dirpas"
+              name="dirpas"
+              placeholder="Dirección del paseador"
+            />
+            <br />
+            <label for="imgpas">Imagen del Paseador</label>
+            <input
+              type="text"
+              id="imgpas"
+              name="imgpas"
+              placeholder="URL de la imagen del paseador"
+            />
+            <br />
+            <label for="tarifa">Tarifa</label>
+            <input
+              type="text"
+              id="tarifa"
+              name="tarifa"
+              placeholder="Tarifa del paseador"
+            />
+            <br />
+            <label for="calpas">Calificación</label>
+            <input
+              type="number"
+              step="0.1"
+              min="0"
+              max="5"
+              id="calpas"
+              name="calpas"
+              placeholder="Calificación del paseador (0 - 5)"
+            />
+            <br />
+
+            <button class="btn btn-primary w-100 mb-3">
+              Mostrar Todos
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary w-100 mb-3"
+              onclick="getPaseadoresXNombre()"
+            >
+              Buscar
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary w-100 mb-3"
+              onclick="delPaseadores()"
+            >
+              Eliminar
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary w-100 mb-3"
+              onclick="updPaseadores()"
+            >
+              Actualizar
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary w-100 mb-3"
+              onclick="addPaseadores()"
+            >
+              Agregar
+            </button>
+
+            <div id="rtaPas">AQUI VA LA rta</div>
+
+            <table id="lstpas" class="table">
+              <thead>
+                <tr>
+                  <th>Nombre y Apellidos</th>
+                  <th>Número de celular</th>
+                  <th>Tarifa</th>
+                  <th>Calificación</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </form>
+        </div>
+        <!--Cierra card body paseador-->
+      </div>
+      <!--Cierra el card de paseadores-->
+    </div>
+    <!--Div que cierra col paseadores-->
+
+    <!--SECCIÓN MASCOTAS-->
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">Gestión de Mascotas</h2>
+
+          <form
+            class="text-primary"
+            onsubmit="consultarMascotas(); return false"
+          >
+            <input
+              type="text"
+              id="iid"
+              name="iid"
+              placeholder="Object _id"
+              style="display: none"
+            />
+            <br />
+            <label for="nombre">Nombre</label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              placeholder="Nombre mascota"
+            />
+            <br />
+            <label for="raza">Raza</label>
+            <input
+              type="text"
+              id="raza"
+              name="raza"
+              placeholder="Raza de mi mascota"
+            />
+            <br />
+            <label for="genero">Genero</label>
+            <input
+              type="text"
+              id="genero"
+              name="genero"
+              placeholder="Genero de mi mascota"
+            />
+            <br />
+            <label for="recomendaciones">Recomendaciones</label>
+            <input
+              type="text"
+              id="recomendaciones"
+              name="recomendaciones"
+              placeholder="Recomendaciones"
+            />
+            <br />
+            <label for="idpas">id Paseador</label>
+            <input
+              type="text"
+              id="idpas"
+              name="idpas"
+              placeholder="id paseador"
+            />
+
+            <button class="btn btn-primary w-100 mb-3">ALL MASCOTAS</button>
+            <button
+              type="button"
+              class="btn btn-primary w-100 mb-3"
+              onclick="getMascota()"
+            >
+              BUSCAR MASCOTA
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary w-100 mb-3"
+              onclick="delMascota()"
+            >
+              Eliminar Mascota
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary w-100 mb-3"
+              onclick="updMascota()"
+            >
+              UPD Mascota
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary w-100 mb-3"
+              onclick="addMascota()"
+            >
+              Add Mascota
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary w-100 mb-3"
+              onclick="verIid()"
+            >
+              Ver iid
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-primary w-100 mb-3"
+              onclick="verIMasPas()"
+            >
+              info masYpas
+            </button>
+
+            <div id="rtaMiMascota">AQUI VA LA rta</div>
+            <table id="lstmasc">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Raza</th>
+                  <th>Genero</th>
+                  <th>Recomendaciones</th>
+                  <th>Accion</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </form>
+        </div>
+        <!--Cierra card body mascotas-->
+      </div>
+      <!--Cierra el card de mascotas-->
+    </div>
+    <!-- Div cierra col Mascotas-->
+
+    <!--SECCIÓN DUEÑOS-->
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">Gestión de Dueños</h2>
+
+          <form
+            class="text-primary"
+            id="formPas"
+            onsubmit="consultarDuenos(); return false"
+          >
+            <input
+              type="text"
+              id="iid"
+              name="iid"
+              placeholder="Object _id"
+            />
+            <br />
+            <label for="nomdue">Nombres y Apellidos</label>
+            <input
+              type="text"
+              id="nomdue"
+              name="nomdue"
+              placeholder="Nombre dueño"
+            />
+            <br />
+            <label for="teldue">Telefono</label>
+            <input
+              type="text"
+              id="teldue"
+              name="teldue"
+              placeholder="Telefono dueño"
+            />
+            <br />
+            <label for="dirdue">Direccion</label>
+            <input
+              type="text"
+              id="dirdue"
+              name="dirdue"
+              placeholder="Direccion dueño"
+            />
+            <br />
+            <label for="cordue">Correo</label>
+            <input
+              type="text"
+              id="cordue"
+              name="cordue"
+              placeholder="Correo dueño"
+            />
+            <br />
+
+            <button class="btn btn-primary w-100 mb-3">
+              Mostrar Todos
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary w-100 mb-3"
+              onclick="getDuenosXNombre()"
+            >
+              Buscar
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary w-100 mb-3"
+              onclick="delDuenos()"
+            >
+              Eliminar
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary w-100 mb-3"
+              onclick="updDuenos()"
+            >
+              Actualizar
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary w-100 mb-3"
+              onclick="addDuenos()"
+            >
+              Agregar
+            </button>
+
+            <div id="rtaDuenos">AQUI VA LA rta</div>
+
+            <table id="lstdue" class="table">
+              <thead>
+                <tr>
+                  <th>Nombre y Apellidos</th>
+                  <th>Telefono</th>
+                  <th>Dirección</th>
+                  <th>Correo</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </form>
+        </div>
+        <!--Cierra card body Dueños-->
+      </div>
+      <!--Cierra el card de Dueños-->
+    </div>
+    <!--Div que cierra col Dueños-->
+  </div>
+  <!--Div que cierra row principal-->
